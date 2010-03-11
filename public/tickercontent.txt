@@ -1,0 +1,21 @@
+<!--Wrap each ticker content inside <div class="message"> tag -->
+
+<div class="message">
+	<a href="inspiration"><strong>Need some inspiration?</strong> Check out creative bus stop designs from around the world. click here to be inspired!</a>
+</div>
+
+<div class="message">
+	<a href="designs"><strong>1,000 Designs Posted</strong> Sweet! We just passed the 1,000th design! Thanks for your participation. Now get in there and rate your favorites!</a>
+</div>
+
+<div class="message">
+	<a href="designs"><strong>No Design Skillz?</strong> No problem&mdash;submit a written idea to make bus stops better. Your ideas will help increase ridership and lower pollution.</a>
+</div>
+
+<div class="message">
+	<a href="designs"><strong>Did you know?</strong> Every time you ride the bus or take the train, you are saving 130 pounds of CO2 that would have been spewed into our air.</a>
+</div>
+
+<div class="message">
+	<a href="designs"><strong>Tweet?</strong> Follow us on twitter if you&rsquo;d like to see what we&rsquo;re doing right now...</a>
+</div>

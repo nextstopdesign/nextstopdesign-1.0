@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<photos>
+	<photo design_url="" desc="design caption one" url="photos/one.jpg" />
+	<photo design_url="" desc="design caption two" url="photos/two.jpg" />
+	<photo design_url="" desc="design caption three" url="photos/three.jpg" />
+	<photo design_url="" desc="design caption four" url="photos/four.jpg" />
+	<photo design_url="" desc="design caption five" url="photos/five.jpg" />
+	<photo design_url="" desc="design caption six" url="photos/six.jpg" />
+	<photo design_url="" desc="design caption seven" url="photos/seven.jpg" />
+	<photo design_url="" desc="design caption eight" url="photos/eight.jpg" />
+</photos>

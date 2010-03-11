@@ -1,0 +1,109 @@
+<% title h("Submitted Idea") %>
+<% design_class h("rate-ideas") %>
+
+<div class='clear'></div>
+
+<div class='grid_16'>
+	<table border="0" width='100%;' class='prev_next'>
+		<tr>
+			<td>
+				<% unless @idea.first? %>
+				      <%= link_to(image_tag('site/buttons/previous_page.jpg'), @idea.higher_item) %>
+				<% end %>
+			</td>
+			<td></td>
+			<td class='right'>
+				<% unless @idea.last? %>
+				      <%= link_to(image_tag('site/buttons/next_page.jpg'), @idea.lower_item) %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan='3'><%= image_tag('site/shadow_up.jpg')%></td>
+		</tr>
+	</table>
+</div>
+
+<div class='clear'></div>
+
+
+<div class='grid_4' style='margin-top: 32px;'>
+
+	<!-- AddThis Button BEGIN -->
+	<script type="text/javascript">
+		var addthis_pub="nextstopdesign";
+		var addthis_brand = "Next Stop Design";
+		var addthis_header_color = "#ffffff";
+		var addthis_header_background = "#CC0000";
+	</script>
+	
+	<style type="text/css" media="screen">
+		addthis_toolbox a { text-decoration: none; color: #222; }
+		img.share { position: relative; left: -28px; }
+	</style>
+	
+	
+	<!-- AddThis Button BEGIN -->
+	
+	<%= image_tag('share_idea.png', :class => 'share') -%>
+	
+	<div class="addthis_toolbox addthis_default_style">
+	<a href="http://www.addthis.com/bookmark.php?v=250&pub=nextstopdesign" class="addthis_button_compact">Share</a>
+	<span class="addthis_separator">|</span>
+	<a class="addthis_button_facebook"></a>
+	<a class="addthis_button_myspace"></a>
+	<a class="addthis_button_google"></a>
+	<a class="addthis_button_twitter"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js?pub=nextstopdesign"></script>
+	<!-- AddThis Button END -->
+	
+	<br /><br />
+	
+	<%= image_tag('site/buttons/rate_this_idea.jpg') -%>
+
+	<div class='rating_area'>
+
+		<% if admin? || user? %>
+		
+		<ul class='star-rating'>
+			<li class='current-rating' style='width:<%= (@idea.rating * 30).to_i -%>px;'>Currently <%= number_with_precision(@idea.rating, :precision => 1) %>/5 Stars</li>
+		    <li><%= link_to( "1", { :controller => "ratings", :action => "rate_idea", :id => @idea.id, :rating => 1 }, :class => 'one-star', :name => '1 star out of 5') %></li>
+		    <li><%= link_to( "2", { :controller => "ratings", :action => "rate_idea", :id => @idea.id, :rating => 2 }, :class => 'two-stars', :name => '2 stars out of 5') %></li>
+		    <li><%= link_to( "3", { :controller => "ratings", :action => "rate_idea", :id => @idea.id, :rating => 3 }, :class => 'three-stars', :name => '3 stars out of 5') %></li>
+		    <li><%= link_to( "4", { :controller => "ratings", :action => "rate_idea", :id => @idea.id, :rating => 4 }, :class => 'four-stars', :name => '4 stars out of 5') %></li>
+		    <li><%= link_to( "5", { :controller => "ratings", :action => "rate_idea", :id => @idea.id, :rating => 5 }, :class => 'five-stars', :name => '5 stars out of 5') %></li>
+		</ul>
+		
+		<p style='font-size: .95em;'>Roll over and click the blue stars to rate this idea.</p>
+		<p>Rated <%= number_with_precision(@idea.rating, :precision => 1) %> of 5 Stars (<%= pluralize(@idea.ratings.size, 'rating') -%>)</p>
+		
+	<% else %>
+
+		<p>You must be a registered user to rate ideas.</p>
+
+		<p><%= link_to(image_tag('site/buttons/register_small.jpg'), :controller => "users", :action => "request_dob") %><br />
+		<%= link_to(image_tag('site/buttons/login_small.jpg'), login_path) %></p>
+
+	<% end %>
+
+	</div>
+	
+</div>
+
+<div class='grid_10 postfix_2 content'>
+	
+	<%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <%- end -%>
+
+<h1 class='idea'><%= show_content(@idea.idea) %></h1>
+<p class='author'>Idea submitted by <%= @idea.user.username -%> at <%= @idea.created_at.strftime("%B %d, %Y") -%></p>
+
+<hr />
+
+<h2>Discuss this idea</h2>
+
+<%= render :partial => "partials/discuss", :object => @idea %>
+
+</div>

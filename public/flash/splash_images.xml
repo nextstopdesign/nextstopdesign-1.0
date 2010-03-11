@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<album lgPath="../images/splash/" tnPath="../images/splash/thumb/" title="splash" description="splash" tn="">
+	<gallery>
+		<img src="images/splash/bus1.jpg" title="" caption="" link="" target="" pause=""/>
+		<img src="images/splash/bus2.jpg" title="" caption="" link="" target="" pause=""/>
+	</gallery>
+</album>

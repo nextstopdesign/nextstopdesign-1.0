@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Next Stop Design | <%= yield(:title) || "*** MISSING TITLE for " + controller.controller_name + "-" + controller.action_name + " ***"%></title>
+	<%= stylesheet_link_merged :base %>
+	<%= stylesheet_link_tag 'redbox' %>
+	<%= javascript_include_merged :base %>
+	<%= javascript_include_tag 'ticker' %>
+	<%= javascript_include_tag 'redbox' %>
+	<%= javascript_include_tag 'swfobject_older' %>
+    <%= yield(:head) %>
+	<meta name="description" content="An experiment in crowdsourcing to build a better bus stop">
+	<meta name="keywords" content="crowd sourcing, crowd, sourcing, social media, web 2.0, utah transit authority, uta, fta, federal transit authority, university of utah">
+  </head>
+
+  <body id='<%= @controller.controller_name -%>' class='<%= params[:permalink] ||= @controller.action_name -%>'>
+
+	<div class='container_16'>
+
+	<div class='grid_8'>
+		<%= link_to(image_tag('site/next_stop_design_logo.jpg', :class=> 'logo'), :controller => 'welcome') -%>
+	</div>
+	
+	<div class='grid_8'>
+		<%= render :partial => "partials/login_logout" %>
+	</div>
+	
+	<div class='grid_16'>
+		<%= render :partial => "partials/navigation" %>
+	</div>
+		
+	<% if admin? %>
+		<div class='grid_16 admin_navigation'>
+			<%= render :partial => "partials/admin_links" %>
+		</div>
+	<% end %>
+			
+	<% if @show_splash %>
+	
+		<div class='grid_16'>
+				<div id="desktop">
+					<div id="highest">
+						
+						<div style='margin-top: 70px; margin-left: 30px; margin-right: 30px; color: #222222;'>
+														
+							<p>Thank you to all who participated in our first
+                            design competition and congratulations to our winners!</p>
+                            
+							 <style type="text/css" media="screen">
+							 	a.winner { text-decoration: none; border-bottom: 1px solid #555; color: #555555;}
+							 	a.winner:hover { color: #555555; background-color: #ffffff; }
+							 </style>
+							<p>
+							<span style='font-size: 10px;'>1<span style='font-size: 9px;'>ST</span> PLACE</span> <a href='designs/184-Folding-Bus-Stop' class='winner'>Folding BusStop</a><br />
+							by Nikolas Plastiras, Thessaloniki, Greece<br />
+							
+							<br />
+							<span style='font-size: 10px;'>2<span style='font-size: 9px;'>ND</span> PLACE</span> <a href='designs/283-STOP-TO-MOVE' class='winner'>Stop To Move</a><br />
+							by The Matters Team, Mumbai, India<br />
+							<br />
+							<span style='font-size: 10px;'>3<span style='font-size: 9px;'>RD</span> PLACE</span> <a href='designs/266-Smart-Stop' class='winner'>Smart Stop</a><br />
+							by Andrew Fett, Sioux Falls, SD, USA</p>
+														
+							<div id="show_all_designs_button">
+								<span><%= link_to 'Show All Designs', :controller => "designs", :action => "index" -%></span>
+							</div>
+							
+							<p style='font-size: 10px;'><br />If you&rsquo;re curious: <%= link_to "why the decrease in rating counts", "/what-happened", :class => "winner" %></p>
+							
+						</div>
+						
+						
+
+					</div>
+
+
+					<div id="polaroids">
+						
+						 <img id='defaultDemo' src='images/finalists/1.jpg' />
+						     						
+					</div>
+
+
+				</div>
+			
+		</div>
+		
+		<div class='clear'></div>
+		
+		<div class='grid_16 ticker'>
+
+			<script type="text/javascript">
+			// <![CDATA[			
+				var xmlfile="/tickercontent/"
+				new ajax_ticker(xmlfile, "nextstopnews", "newsitem", 6800, "fade")
+			// ]]>
+			</script>
+
+		</div>
+		
+		<div style='margin-top: 16px;' class='clear'>&nbsp;</div>
+		
+		<div class='grid_4'><%= link_to(image_tag("site/ads/todo_list_done.jpg", :style=>'position: relative; top: -9px;'), designs_path) %></div>
+		<div class='grid_4 odometer'>
+			
+			<div id="odo"></div>
+			<script type="text/javascript">
+				var s2 = new SWFObject("flash/odo.swf","ply","165","53","9","#222222");
+				s2.addParam("allowscriptaccess","always");
+				s2.addParam("scale", "noscale");
+				s2.addVariable("counterStart", '<%= (@number_of_designs - 3) -%>');
+				s2.addVariable("counterEnd", '<%= @number_of_designs -%>');
+				s2.write("odo");
+			</script>			
+			
+			
+		</div>
+		<div class='grid_4'><%= link_to(image_tag("site/ads/get_inspired.jpg"), :controller => 'inspiration') %></div>
+		<div class='grid_4'><%= link_to(image_tag("site/ads/nst_is.jpg", :alt=>"NEXT STOP DESIGN IS an experiment in crowdsourcing the best ideas and designs to build a better bus stop. We hope that better stops will encourage more people to ride public transportation, which benefits us all (and our planet) in many ways."), about_path) %></div>
+
+		<div class='clear'></div>
+		
+		<div style='margin-top: 16px;' class='clear'>&nbsp;</div>
+		
+	
+	<% else %>
+	
+	
+		<div class='grid_10 prefix_3 postfix_3 content'>
+	      <%- flash.each do |name, msg| -%>
+	        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+	      <%- end -%>
+
+	      <%= yield %>
+		
+		</div>
+	
+	<% end %>
+	
+	<div class='clear'></div>
+	
+	<div class='grid_16 shadow'>
+		<%= image_tag 'site/shadow.jpg', :alt => 'shadow' -%>
+	</div>
+	
+	<div class='grid_16 logos'>
+		<%= link_to (image_tag 'site/sponsor_logos_shiny.jpg', :alt => "Sponsored by the Utah Transit Authority, Federal Transit Authority and The University of Utah", :style => 'position: relative; top: -10px; left: -1px;'), :controller => "about" -%>
+	</div>
+	
+	
+	<div class='grid_16 footer'>
+		<%= render :partial => "partials/footer" %>
+	</div>
+	
+	</div>	
+    
+
+	<script type="text/javascript" charset="utf-8">
+		
+	Event.observe(window, "load", function() {
+		//Images Array used in all demos
+		var images = [
+			"images/finalists/1.jpg",
+			"images/finalists/2.jpg",
+			"images/finalists/3.jpg",
+			"images/finalists/4.jpg",
+			"images/finalists/5.jpg"
+		];
+
+		//Default fader
+		new Widget.Fader("defaultDemo", images);
+		
+	});
+	
+	</script>
+	
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-8122455-2");
+	pageTracker._trackPageview();
+	} catch(err) {}</script>
+
+  </body>
+</html>

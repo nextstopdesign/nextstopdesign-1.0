@@ -1,0 +1,13 @@
+<% title h("Show User | " + @user.first_name + " " + @user.last_name) %>
+
+
+<h1><%= @user.first_name + " " + @user.last_name -%></h1>
+
+<p><span class='user_info'>Birthdate:</span> <%= @user.birthdate.strftime("%B %d, %Y") -%> (<%= Date.today.year - @user.birthdate.strftime("%Y").to_i %> years old)</p>
+<p><span class='user_info'>Registered:</span> <%= @user.created_at.strftime("%B %d, %Y") -%></p>
+
+<p><span class='user_info'>Designs:</span> <%= debug(@user.designs) -%></p>
+
+<p><span class='user_info'>Ratings:</span> <%= debug(@user.designs) -%></p>
+
+<p><span class='user_info'>Comments:</span> <%= debug(@user.designs) -%></p>

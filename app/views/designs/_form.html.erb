@@ -1,0 +1,35 @@
+<%= f.error_messages %>
+
+<%= hidden_field_tag 'design[user_id]', session[:user_id] %>
+<p>
+  <%= f.label :title, "Design Title" %><br />
+  <%= f.text_field :title, :style => "width: 240px", :class => "text" %>
+</p>
+<p>
+  <%= f.label :description, "About Your Design" %><br />
+  
+<%= textile_editor 'design', 'description', :class => 'textarea', :style => "width: 510px; height: 160px;" -%>
+
+</p>
+
+<p>Add up to three images to show your design.<br />
+	<em>Please only submit JPEG, PNG or GIF images. (No PDFs)<br />
+		Images should be under 2 MB in size.</em></p>
+
+
+<p><%= image_tag @design.photo1.url(:tiny) unless @design.photo1_file_size.nil? %>
+	<%= f.label :photo1, "Image 1" %><br />
+	<%= f.file_field :photo1 %>
+</p>
+
+<p><%= image_tag @design.photo2.url(:tiny) unless @design.photo2_file_size.nil? %>
+	<%= f.label :photo2, "Image 2" %><br />
+	<%= f.file_field :photo2 %>
+</p>
+
+<p><%= image_tag @design.photo3.url(:tiny) unless @design.photo3_file_size.nil? %>
+	<%= f.label :photo3, "Image 3" %><br />
+	<%= f.file_field :photo3 %>
+</p>
+
+<%= textile_editor_initialize -%>

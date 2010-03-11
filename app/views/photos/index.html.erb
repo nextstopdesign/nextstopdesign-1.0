@@ -1,0 +1,16 @@
+<% title h("Inspiration") %>
+<% design_class h("inspiration") %>
+
+
+<ul class='inspiration'>
+
+<% for photo in @photos %>
+
+<li><%= link_to(image_tag(photo.photo.url(:thumb), :style => 'border: 1px solid #ccc; padding: 3px;'),photo) unless photo.photo_file_size.nil? %><br />
+<%=h photo.title %>	
+</li>
+<% end %>
+
+</ul>
+
+<div class='grid_16' style='margin-bottom: 32px;'>&nbsp;</div>

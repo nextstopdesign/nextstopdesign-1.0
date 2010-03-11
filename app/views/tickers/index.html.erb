@@ -1,0 +1,24 @@
+<% title h("News Ticker Content") %>
+
+<h1>News Ticker Content</h1>
+
+<table class='user_list'>
+  <tr>
+    <th>Content</th>
+    <th>URL</th>
+  </tr>
+
+<% for ticker in @tickers %>
+  <tr>
+    <td><%=h ticker.content %></td>
+    <td><%=h ticker.url %></td>
+    <td><%= link_to 'Show', ticker %></td>
+    <td><%= link_to 'Edit', edit_ticker_path(ticker) %></td>
+    <td><%= link_to 'Destroy', ticker, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New ticker', new_ticker_path %>

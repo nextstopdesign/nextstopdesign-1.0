@@ -1,0 +1,36 @@
+<% title h("New User Registration > Request Date of Birth") %>
+
+
+<h1>New User Registration</h1>
+
+<p>By registering with this site, you will be able to score
+designs, submit your own designs and participate in the discussion
+forum.</p>
+
+<% form_for :user, @user, :url => { :action => "verify_dob" } do |f| %>  
+
+	<p><%= f.label :birthdate, "To begin, please enter your birthdate" %><br />
+	<%= date_select("user", "birthdate", :start_year => 1909, :end_year => 2009, :default_year => 1969, :order => [:month, :day, :year]) -%>
+	<span style='font-size: .8em; padding-left: 20px;'><%= link_to_redbox("Why am I being asked for my birthdate?", "why", html_options = { }) -%></span></p>  
+	<%= f.submit " submit " %>
+
+<% end %>
+
+<div id='why'>
+	
+	<h1>Why am I being asked by birthdate?</h1>
+	
+	<p>You are being asked for your birthdate so we can determine which
+registration process to send you through. Adults and minors will be taken to
+different registration processes.</p>
+	
+	<p>We will not store your birthdate until you choose to complete the entire
+registration process.</p>
+	
+	<p>If you have questions about this process, feel free to email the
+researcher for this project, <%= mail_to "daren.brabham@gmail.com", "Daren
+Brabham", :encode => "hex" -%>.</p>
+
+<%= link_to_close_redbox("close", html_options = {}) %>
+	
+</div>

@@ -1,0 +1,56 @@
+<% title h("Submit An Idea") %>
+<% design_class h("new-idea") %>
+
+
+<div class='grid_4'>&nbsp;</div>
+
+<div class='grid_10 postfix_2 content'>
+	
+<% if admin? || user? %>
+
+<%= show_content_by_permalink("submit-ideas") -%>
+
+<% form_for(@idea) do |f| %>
+  
+<%= f.error_messages %>
+
+<%= hidden_field_tag 'idea[user_id]', session[:user_id] %>
+
+<p><%= textile_editor 'idea', 'idea', :style => 'width: 510px; height: 100px;' -%>  
+
+<%= textile_editor_initialize -%></p>
+
+  <p>
+    <%= f.submit " submit idea " %>
+  </p>
+
+<% end %>
+
+<br /><br /><br />
+
+<% else %>
+
+<h1>Please login first</h1>
+
+<p>You must be a registered user to upload your ideas.</p>
+
+<table border="0" class=''>
+	<tr>
+		<td>
+			<div id="register_button">
+				<span><%= link_to 'New user registration', :controller => "users", :action => "request_dob" -%></span>
+			</div>
+		</td>
+		<td style='padding-left: 10px;'>
+			<div id="login_button">
+				<span><%= link_to 'Login', login_path -%></span>
+			</div>
+		</td>
+	</tr>
+</table>
+
+<% end %>
+
+</div>
+
+<div class='grid_16' style='height: 64px;'>&nbsp;</div>

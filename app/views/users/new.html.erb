@@ -1,0 +1,195 @@
+<% title h("New User > Registration Form") %>
+
+
+<h1>New User Registration</h1>
+<p>Please continue filling out this form. All fields are required.</p>
+
+
+<% form_for :user, @user, :url => { :action => "create" } do |f| %>
+
+<%= f.hidden_field :birthdate -%>
+<%= f.hidden_field :accepted_tou, :value => 1.to_i -%>
+
+<%= f.error_messages -%>
+
+<table border="0">
+
+	<tr>
+		<td colspan='3'>
+			<p class='instruction'>1. Please enter your name, email and zip code.</p>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<%= f.label :first_name, "First Name" -%><br />
+	    	<%= f.text_field :first_name, :class => "text" -%>
+	    </td>
+
+		<td>
+		    <%= f.label :last_name, "Last Name" -%><br />
+		    <%= f.text_field :last_name, :class => "text" -%>
+	    </td>
+
+		<td>&nbsp;</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<%= f.label :city, "City" -%><br />
+	    	<%= f.text_field :city, :class => "text" -%>
+	    </td>
+
+		<td>
+			<%= f.label :state, "State / Province" -%><br />
+	    	<%= f.text_field :state, :class => "text" -%>
+	    </td>
+
+		<td>&nbsp;</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<%= f.label :zip_code, "Zip / Postal Code" -%><br />
+	    	<%= f.text_field :zip_code, :size => 15, :class => "text" -%>
+		</td>
+		<td>
+			<%= f.label :country, "Country" -%><br />
+			<%= f.country_select(:country, "Please select...") %>
+		</td>
+		<td>&nbsp;</td>
+	</tr>
+	
+	<tr>
+		<td>
+		    <%= f.label :email, "E-mail" -%><br />
+		    <%= f.text_field :email, :class => "text" -%>
+	    </td>
+
+		<td>
+		    <%= f.label :email_confirmation, "Verify E-mail" -%><br />
+		    <%= f.text_field :email_confirmation, :class => "text" -%>
+	    </td>
+
+		<td>&nbsp;</td>
+	</tr>
+	
+	<tr>
+		<td>
+		    <%= f.label :username, "Choose A Username" -%><br />
+		    <%= f.text_field :username, :class => "text" -%>
+	    </td>
+
+		<td>
+		    <%= f.label :password, "Choose A Password" -%><br />
+		    <%= f.password_field :password, :class => "text" -%>
+	    </td>
+
+		<td>&nbsp;</td>
+	</tr>
+	
+	
+	<tr>
+		<td colspan='3'>
+			<br /><p class='instruction'>2. Which best describes your race / ethnicity?</p>			
+		    <%= f.radio_button("race", "white_not_hispanic") %> White, not hispanic<br />
+		    <%= f.radio_button("race", "hispanic_latino") %> Hispanic / Latino<br />
+		    <%= f.radio_button("race", "black_african_american") %> Black / African American<br />
+		    <%= f.radio_button("race", "asian_or_pacific_islander") %> Asian or Pacific Islander<br />
+		    <%= f.radio_button("race", "american_indian_alaskan_native_native_hawaiian") %> Am. Indian, Native Alaskan or Hawaiian<br />
+		    <%= f.radio_button("race", "multi_racial") %> Multi-racial<br />
+		    <%= f.radio_button("race", "prefer_not_to_disclose") %> Prefer not to say<br />
+			<%= f.radio_button("race", "other") %> Other, please specify <%= f.text_field :other_race, :size => 10, :class => "text" %><br />
+		</td>
+		</tr>
+		
+	<tr>
+		<td colspan='3'>
+			<br /><p class='instruction'>3. On average, how often do you use public transportation, such as the bus or train?</p>			
+		    <%= f.radio_button("public_transportation_use_frequency", "every_day") %> Every day<br />
+		    <%= f.radio_button("public_transportation_use_frequency", "more_than_once_a_week") %> More than once a week<br />
+		    <%= f.radio_button("public_transportation_use_frequency", "once_a_week") %> Once a week<br />
+		    <%= f.radio_button("public_transportation_use_frequency", "montly") %> Monthly<br />
+		    <%= f.radio_button("public_transportation_use_frequency", "yearly") %> Yearly<br />
+		    <%= f.radio_button("public_transportation_use_frequency", "not_used_in_past_year") %> I have not used public transportation in the last year<br />
+	    </td>
+	</tr>
+	
+	<tr>
+		<td colspan='3'>
+			<br /><p class='instruction'>4. When do you use public transportation? Check all that apply.</p>			
+			<%= check_box_tag "user[public_transporation_use_when][]", "not used", false %> I do not use public transportation<br />
+			<%= check_box_tag "user[public_transporation_use_when][]", "school", false %> To get to and from school<br />
+			<%= check_box_tag "user[public_transporation_use_when][]", "work", false %> To get to and from work<br />
+			<%= check_box_tag "user[public_transporation_use_when][]", "shopping businesses", false %> To get to and from shopping and other businesses<br />
+			<%= check_box_tag "user[public_transporation_use_when][]", "events", false %> To get to and from sporting events, festivals, concerts and other events<br />
+			<%= check_box_tag "user[public_transporation_use_when][]", "friends family", false %> To get to and from the homes of my friends and family<br />
+	    </td>
+	</tr>
+	
+	<tr>
+		<td colspan='3'>
+			<br /><p class='instruction'>5. Why do you use public transportation? Check all that apply.</p>			
+			<%= check_box_tag "user[public_transportation_use_why][]", "not used", false %> I do not use public transportation<br />
+			<%= check_box_tag "user[public_transportation_use_why][]", "environmentally friendly", false %> It is more environmentally friendly than driving<br />
+			<%= check_box_tag "user[public_transportation_use_why][]", "no car", false %> I do not have access to a car<br />
+			<%= check_box_tag "user[public_transportation_use_why][]", "cheaper than driving", false %> It is less expensive than driving<br />
+			<%= check_box_tag "user[public_transportation_use_why][]", "parking worries", false %> It is a good way to not worry about parking<br />
+	    </td>
+	</tr>
+
+	
+	<tr>
+		<td colspan='3'>
+			<br /><p class='instruction'>6. Have you ever attended a public meeting to give your opinions on urban planning issues in your area?</p>			
+		    <%= f.radio_button("urban_planning_meeting_attendance", "yes") %> Yes<br />
+		    <%= f.radio_button("urban_planning_meeting_attendance", "no") %> No<br />
+	    </td>
+	</tr>
+	
+	<tr>
+		<td colspan='3'>
+			<br /><p class='instruction'>7. Have you ever e-mailed or called someone to give your opinions on urban planning issues in your area?</p>
+		    <%= f.radio_button("urban_planning_coorespondance", "yes") %> Yes<br />
+		    <%= f.radio_button("urban_planning_coorespondance", "no") %> No<br />
+	    </td>
+	</tr>
+	
+	<tr>
+		<td colspan='3'>
+			<br /><p class='instruction'>8. How did you hear about this site? Check all that apply.</p>		
+			<%= check_box_tag "user[reference][]", "newspaper magazine", false %> Newspaper or magazine<br />
+			<%= check_box_tag "user[reference][]", "radio", false %> Radio<br />
+			<%= check_box_tag "user[reference][]", "tv", false %> TV<br />
+			<%= check_box_tag "user[reference][]", "internet", false %> Internet<br />
+			<%= check_box_tag "user[reference][]", "social site", false %> Social networking site (e.g., Facebook, MySpace)<br />
+			<%= check_box_tag "user[reference][]", "friend", false %> From a friend<br />
+			<%= check_box_tag "user[reference][]", "other", false %> Other, please specify <%= f.text_field :other_reference, :size => 10 %><br />
+	    </td>
+	</tr>	
+	
+	<tr>
+		<td colspan='3'>
+			<%= f.check_box :contact_ok %> I am willing to be contacted by researches for an interview to give additional feedback regarding this site and how I use public transportation.
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan='3'>
+						
+			<p>Remember, your personal information will be kept confidential.
+            If you&rsquo;d like to be reminded of the information you saw on
+            the previous page, <%= link_to "click here", :back, :popup => true
+            -%> to open that page in a new window. You can print the
+            information at that time if you&rsquo;d like.</p>
+
+<br />
+
+<p><%= f.submit " submit " -%></p>
+
+		
+		</td>
+	</tr>
+</table>
+
+<% end %>

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>nextstopdesign.com | <%= yield(:title) || "*** MISSING TITLE for " + controller.controller_name + "-" + controller.action_name + " ***"%></title>
+	<%= stylesheet_link_merged :base %>
+	<%= stylesheet_link_tag 'redbox' %>
+	<%= javascript_include_merged :base %>
+	<%= javascript_include_tag 'redbox' %>
+	<%= javascript_include_tag 'swfobject_older' %>
+	<%= javascript_include_tag 'FancyZoom' %>
+	<%= javascript_include_tag 'FancyZoomHTML' %>
+    <%= yield(:head) %>
+	<meta name="description" content="An experiment in crowdsourcing to build a better bus stop">
+	<meta name="keywords" content="crowd sourcing, crowd, sourcing, social media, web 2.0, utah transit authority, uta, fta, federal transit authority, university of utah">
+  </head>
+
+  <body id='<%= @controller.controller_name -%>' class='<%= yield(:design_class) -%>'>
+
+	<div class='container_16'>
+
+	<div class='grid_8'>
+		<%= link_to(image_tag('site/next_stop_design_logo.jpg', :class=> 'logo'), :controller => 'welcome') -%>
+	</div>
+	
+	<div class='grid_8'>
+		<%= render :partial => "partials/login_logout" %>
+	</div>
+	
+	<div class='grid_16'>
+		<%= render :partial => "partials/navigation" %>
+	</div>
+		
+	<% if admin? %>
+		<div class='grid_16 admin_navigation'>
+			<%= render :partial => "partials/admin_links" %>
+		</div>
+	<% end %>
+	
+	<%= yield -%>
+	
+	<div class='clear'></div>
+	
+	<div class='grid_16 shadow'>
+		<%= image_tag 'site/shadow.jpg', :alt => 'shadow' -%>
+	</div>
+	
+	<div class='grid_16 logos'>
+		<%= link_to (image_tag 'site/sponsor_logos_shiny.jpg', :alt => "Sponsored by the Utah Transit Authority, Federal Transit Authority and The University of Utah", :style => 'position: relative; top: -10px; left: -1px;'), :controller => "about" -%>
+	</div>
+	
+	<div class='grid_16 footer'>
+		<%= render :partial => "partials/footer" %>
+	</div>
+	
+	</div>	
+
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-8122455-2");
+	pageTracker._trackPageview();
+	} catch(err) {}</script>
+ </body>
+</html>

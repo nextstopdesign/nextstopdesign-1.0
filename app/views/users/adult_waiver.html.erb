@@ -1,0 +1,9 @@
+<% title h("New User Registration > Adult Consent") %>
+
+
+<%= show_content_by_permalink("adult-consent") -%>
+
+<% form_for :user, @user, :url => { :controller => "users", :action => "new" } do |f| %>
+<%= f.submit " next " %>
+
+<% end %>

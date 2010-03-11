@@ -1,0 +1,8 @@
+<% title h("New User Registration > Minor Consent") %>
+
+
+<%= show_content_by_permalink("minor-consent") -%>
+
+<% form_for :user, @user, :url => { :controller => "users", :action => "new" } do |f| %>
+<%= f.submit " next " %>
+<% end %>

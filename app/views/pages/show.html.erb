@@ -1,0 +1,9 @@
+<% title h@page.name %>
+
+<%= show_content(@page.content) -%>
+
+<p><%= @updated_at %></p>	
+
+<% if admin? %>
+	<%=	link_to(image_tag("tools/edit_bug.png", { :style => '' }), edit_page_path(@page), { :style => 'border: none;' }) %>
+<% end %>

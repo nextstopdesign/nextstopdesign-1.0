@@ -1,0 +1,19 @@
+<% form_for @page do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :permalink %><br />
+    <%= f.text_field :permalink, :disabled => true %>
+  </p>
+  <p>
+    <%= f.label :content %><br />
+    
+	<%= textile_editor 'page', 'content', :style => 'width: 510px;' -%>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+
+<%= textile_editor_initialize -%>

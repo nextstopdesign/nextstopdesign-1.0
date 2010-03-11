@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+   <style type="text/css" media="screen">
+   	body { margin: 0; padding: 0; background-color: #e5e5e5; border-top: 8px solid #222222; }
+	table.nextstop { width: 500px; background-color: #ffffff; margin: 0 auto; border-left: 1px solid #ccc; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; }
+	table.nextstop td { font-size: 12px; padding: 20px; }
+   </style>
+  <table border="0" class='nextstop'>
+  	<tr>
+		<td align='middle'>
+			<a href='http://nextstopdesign.com'><img src='http://nextstopdesign.com/images/site/next_stop_design_logo.jpg' style='margin: 0 auto; text-align: center; padding: 20px;' border='0' alt='next stop design logo' /></a>
+		</td>
+	</tr>
+  	<tr>
+		<td>
+			<p>Dear <%= @first_name %>,</p>
+			
+			<p>Thank you for registering at NEXT STOP DESIGN. Please click the link
+		    below to activate your account.</p>
+		
+			<p>Once your account is active, you&rsquo;ll be
+		    able to submit designs and ideas or rate and comment on others.</p>
+		
+			<p>Verify your account: <a href='http://nextstopdesign.com/users/verify/<%= @verification_code -%>'>http://nextstopdesign.com/users/verify/<%= @verification_code -%></a></p>
+			
+			<p>Thanks,<br />
+				<br />
+				<br />
+				Next Stop Design</p>
+		</td>
+	</tr>
+  </table>
+
+
+	
+  </body>
+</html>

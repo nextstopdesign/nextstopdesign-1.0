@@ -1,0 +1,42 @@
+
+<%= image_tag('site/buttons/add_your_comment.jpg') -%>
+
+
+<% if admin? || user? %>
+
+<div class='rating_area'>
+
+	<% form_tag(comments_path, :class => 'comment_form' ) do -%> 
+  
+	  <%= hidden_field_tag 'comment[commentable_id]', object.id %> 
+	  <%= hidden_field_tag 'comment[commentable_type]', object.class %> 
+	  <%= hidden_field_tag 'comment[user_id]', session[:user_id] %>
+  
+	  <%= text_area_tag 'comment[comment]', nil, :style => 'width:100%; height:100px;' %> 
+
+	  <%= submit_tag ' send comment ' %> 
+
+	<% end %>
+
+</div>
+
+	<% for comment in object.comments %> 
+  	
+			<p class='comment'><%= comment.comment %><br />
+	  		<em class='posted_by'>Posted <%= time_ago_in_words(comment.created_at)  %> ago by <%= comment.user.username -%></em></p> 
+	
+	<% end %>
+
+<% else %>
+
+<div class='rating_area'>
+
+	<p>You must be a registered user to comment on designs.</p>
+
+	<p><%= link_to(image_tag('site/buttons/register_small.jpg'), :controller => "users", :action => "request_dob") %><br />
+	<%= link_to(image_tag('site/buttons/login_small.jpg'), login_path) %></p>
+
+</div>
+
+<% end %>
+

@@ -1,0 +1,50 @@
+<% title h("Discuss Ideas") %>
+<% design_class h("rate-ideas") %>
+
+<div class='grid_16 design_grid' style='height: 32px;'>
+	
+	<ul id='sort'>
+		<li>SORT IDEAS BY</li>
+		<li><%= link_to "rating (high to low)", ideas_path(:sort => "rated-high-to-low") -%></li>
+		<li><%= link_to "rating (low to high)", ideas_path(:sort => "rated-low-to-high") -%></li>
+		<li><%= link_to "username of submitter", ideas_path(:sort => "username") -%></li>
+	</ul>
+	
+</div>
+
+<div class='clear'></div>
+
+<div class='grid_16 content'>
+
+  <%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <%- end -%>
+	
+	<% for idea in @ideas %>
+	
+	<div class='postit_container'>
+		<div class='postit'>
+			<h1><%= link_to(truncate(show_content(idea.idea), :length => 230, :omission => "...(idea continued)"), idea) %></h1>
+		</div>
+		
+		<div class='idea_info'>
+			<p>Submitted by <%= idea.user.username -%><br />
+
+			<%= image_tag('site/buttons/star.png', :class=>'star') -%> Rated <%= idea.rating.round(2) -%>/5&nbsp;(<%= pluralize(idea.ratings.size, 'rating') -%>)<br />
+			<%= image_tag('site/buttons/bubble.png', :class => 'bubble') -%> <%= pluralize(idea.comments.size, 'comment') -%><br />
+			<br />
+			<%= link_to(image_tag('site/buttons/view_and_rate_idea.png'), idea) -%></p>
+		</div>
+	</div>
+	
+
+
+	
+	<% end %>
+		
+	
+</div>
+
+	
+
+

@@ -1,0 +1,22 @@
+<h1>Editing ticker</h1>
+
+<% form_for(@ticker) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_field :content %>
+  </p>
+
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @ticker %> |
+<%= link_to 'Back', tickers_path %>

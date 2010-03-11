@@ -1,0 +1,28 @@
+<% title h("Editing Design") %>
+
+
+<div class='grid_4'>
+
+
+&nbsp;
+
+
+</div>
+
+<div class='grid_10 postfix_2 content'>
+  <%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <%- end -%>
+
+
+<h1>Editing Design</h1>
+
+<% form_for @design, :html => { :multipart => true } do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <p><%= f.submit "Update" %></p>
+<% end %>
+
+<%= link_to 'Show', @design %> |
+<%= link_to 'Back', designs_path %>
+
+</div>

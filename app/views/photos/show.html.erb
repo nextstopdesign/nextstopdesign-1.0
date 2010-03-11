@@ -1,0 +1,41 @@
+<% title h("Inspiration | ") + @photo.title %>
+
+<div class='grid_16 design_grid'>
+	<table border="0" width='100%;' class='prev_next'>
+		<tr>
+			<td>
+			<% unless @photo.first? %>
+			      <%= link_to(image_tag('site/buttons/previous_page.jpg'), @photo.higher_item) %>
+			<% end %>
+			</td>
+			<td>&nbsp;</td>
+			<td class='right'>
+			<% unless @photo.last? %>
+				<%= link_to(image_tag('site/buttons/next_page.jpg'), @photo.lower_item) %>
+			<% end %>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+
+
+
+<div class='grid_10' style='margin-top: 16px;'>
+
+	<%= link_to((image_tag @photo.photo.url(:email), :style=>"border: 1px solid #777; padding: 4px;"), photos_path) unless @photo.photo_file_size.nil? %>
+
+</div>
+
+<div class='grid_5 prefix_1' style='margin-top: 16px;'>
+  
+<h1><%=h @photo.title %></h1>
+<p><%=h @photo.description %><br />
+	
+photo credit: <%= link_to(@photo.credit, @photo.url) unless @photo.url.nil? %></p>
+
+</p>
+</div>
+
+<div class='grid_16' style='margin-bottom: 32px;'>&nbsp;</div>

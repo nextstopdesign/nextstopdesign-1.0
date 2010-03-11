@@ -1,0 +1,101 @@
+<% title h("Viewing Design | " + @design.title) %>
+<% design_class h("rate") %>
+
+
+<div class='grid_16'>
+	<table border="0" width='100%;' class='prev_next'>
+		<tr>
+			<td>
+				<% unless @design.first? %>
+				      <%= link_to(image_tag('site/buttons/previous_page.jpg'), @design.higher_item) %>
+				<% end %>
+			</td>
+			<td></td>
+			<td class='right'>
+				<% unless @design.last? %>
+				      <%= link_to(image_tag('site/buttons/next_page.jpg'), @design.lower_item) %>
+				<% end %>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class='clear'></div>
+<div class='grid_4' style='margin-top: 32px;'>
+
+	<!-- AddThis Button BEGIN -->
+	<script type="text/javascript">
+		var addthis_pub="nextstopdesign";
+		var addthis_brand = "Next Stop Design";
+		var addthis_header_color = "#ffffff";
+		var addthis_header_background = "#CC0000";
+	</script>
+	
+	<style type="text/css" media="screen">
+		addthis_toolbox a { text-decoration: none; color: #222; }
+		img.share { position: relative; left: -28px; }
+	</style>
+	
+	
+	<!-- AddThis Button BEGIN -->
+	
+	<%= image_tag('share.png', :class => 'share') -%>
+	
+	<div class="addthis_toolbox addthis_default_style">
+	<a href="http://www.addthis.com/bookmark.php?v=250&pub=nextstopdesign" class="addthis_button_compact">Share</a>
+	<span class="addthis_separator">|</span>
+	<a class="addthis_button_facebook"></a>
+	<a class="addthis_button_myspace"></a>
+	<a class="addthis_button_google"></a>
+	<a class="addthis_button_twitter"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js?pub=nextstopdesign"></script>
+	<!-- AddThis Button END -->
+	
+	
+	<br />
+	<br />
+	
+	<%= image_tag('site/ratings_closed.jpg') -%>
+
+
+
+	<%= render :partial => "partials/comment", :object => @design %>	
+	
+</div>
+
+<div class='grid_11 prefix_1 content'>
+
+  <%- flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <%- end -%>
+
+  	<% unless @design.photo1_file_size.nil? %>
+
+		<%= link_to((image_tag @design.photo1.url(:email), :class => "design_thumbnail"), @design.photo1.url(:large)) %>
+
+	<% end %>
+	
+	<% unless @design.photo2_file_size.nil? %>
+	
+		<%= link_to((image_tag @design.photo2.url(:thumb), :class => "design_thumbnail"), @design.photo2.url(:large)) %>
+		
+	<% end %>
+	
+	<% unless @design.photo3_file_size.nil? %>
+	
+		<%= link_to((image_tag @design.photo3.url(:thumb), :class => "design_thumbnail"), @design.photo3.url(:large)) %>
+		
+	<% end %>
+	
+	<div class='clear'></div>
+	
+	<%= image_tag('site/magnify.png', :alt => 'click to show larger', :title => 'click to show larger', :style => 'clear: both;') %>
+	
+	<h1><%=h @design.title %></h1>
+
+	<p class='author'>Submitted by <%=h @design.user.username %> on <%= @design.created_at.strftime("%B %d, %Y") -%></p>
+
+	<%= show_content(@design.description) %>                                    
+
+</div>

@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  zip_code: MyString
+  email: MyString
+  username: MyString
+  password: MyString
+  race: MyString
+  public_transportation_use_frequency: MyString
+  public_transporation_use_when: MyString
+  public_transportation_use_why: MyString
+  urban_planning_meeting_attendance: MyString
+  urban_planning_coorespondance: MyString
+  reference: MyString
+  contact_ok: MyString
+
+two:
+  first_name: MyString
+  last_name: MyString
+  zip_code: MyString
+  email: MyString
+  username: MyString
+  password: MyString
+  race: MyString
+  public_transportation_use_frequency: MyString
+  public_transporation_use_when: MyString
+  public_transportation_use_why: MyString
+  urban_planning_meeting_attendance: MyString
+  urban_planning_coorespondance: MyString
+  reference: MyString
+  contact_ok: MyString

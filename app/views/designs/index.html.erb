@@ -1,0 +1,70 @@
+<% title h("Rate Designs") %>
+<% design_class h("rate") %>
+
+
+<div class='clear'></div>
+
+<div class='grid_16 design_grid' style='height: 32px;'>
+	
+	<ul id='sort'>
+		<li>SORT DESIGNS BY</li>
+		<li><%= link_to "most recent first", designs_path(:sort => "most-recent-first") -%></li>
+		<li><%= link_to "username of designer", designs_path(:sort => "username") -%></li>
+		<li><%= link_to "design name", designs_path(:sort => "design-title") -%></li>
+		<li><p style='font-size: 10px;'>If you&rsquo;re curious: <%= link_to "why the decrease in rating counts?", "/what-happened", :class => "winner" %></p></li>
+	</ul>
+	
+</div>
+
+<div class='clear'></div>
+
+<div class='grid_16 content'>
+	
+
+<%= @huh -%>
+
+
+<ul id='design_grid'>
+	
+	<% for design in @designs %>
+	
+	<% if design.votes.to_i > 25 %>
+	
+		<li class='design'>
+			<%= link_to(image_tag(design.photo1.url(:thumb), :style => 'border: 1px solid #ccc; padding: 3px;'),design) unless design.photo1_file_size.nil? %><br />
+			<strong><%= design.title %></strong><br />
+			<p>Submitted by <%= design.user.username -%><br />
+			<%= image_tag('site/buttons/star.png', :class=>'star') -%> Rated <%= design.rating.round(2) -%>/5&nbsp;(<%= pluralize(design.ratings.size, 'rating') -%>)<br />
+			<%= image_tag('site/buttons/bubble.png', :class => 'bubble') -%> <%= pluralize(design.comments.size, 'comment') -%><br />
+			</p>
+			<%= link_to(image_tag('site/buttons/view_and_rate.jpg'), design) -%>
+		</li>    
+	
+	<% end %>	
+	<% end %>
+	            
+	
+   
+	<% for design in @designs %>
+	<% if design.votes.to_i < 25 %>
+	                            
+		<li class='design'>
+			<%= link_to(image_tag(design.photo1.url(:thumb), :style => 'border: 1px solid #ccc; padding: 3px;'),design) unless design.photo1_file_size.nil? %><br />
+			<strong><%= design.title %></strong><br />
+			<p>Submitted by <%= design.user.username -%><br />
+			<%= image_tag('site/buttons/star.png', :class=>'star') -%> Rated <%= design.rating.round(2) -%>/5&nbsp;(<%= pluralize(design.ratings.size, 'rating') -%>)<br />
+			<%= image_tag('site/buttons/bubble.png', :class => 'bubble') -%> <%= pluralize(design.comments.size, 'comment') -%><br />
+			</p>
+			<%= link_to(image_tag('site/buttons/view_and_rate.jpg'), design) -%>
+		</li>    
+	
+	<% end %>
+	<% end %>
+
+</ul>
+
+</div>
+
+	
+
+

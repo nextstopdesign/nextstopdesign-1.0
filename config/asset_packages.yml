@@ -1,0 +1,15 @@
+--- 
+javascripts: 
+- base: 
+  - prototype
+  - effects
+  - dragdrop
+  - controls
+  - application
+  - uta
+  - fader
+stylesheets: 
+- base: 
+  - "960"
+  - reset
+  - uta

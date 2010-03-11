@@ -1,0 +1,31 @@
+<% if admin? || user? %>
+
+	<% form_tag(comments_path, :class => 'discussion_form') do -%> 
+	<%= hidden_field_tag 'comment[commentable_id]', object.id %> 
+	<%= hidden_field_tag 'comment[commentable_type]', object.class %> 
+	<%= hidden_field_tag 'comment[user_id]', session[:user_id] %>
+	
+	<%= text_area_tag 'comment[comment]', nil, :style => 'width:487px; height:100px;' %> 
+	
+	<%= submit_tag ' post comment ' %> 
+	<% end %>
+
+<% else %>
+
+<p>You must be a registered user to discuss this idea</p>
+
+<p><%= link_to(image_tag('site/buttons/register_small.jpg'), :controller => "users", :action => "request_dob") %><br />
+<%= link_to(image_tag('site/buttons/login_small.jpg'), login_path) %></p>
+
+<% end %>
+	
+<% for comment in object.comments %> 
+  	
+	<p class='single_comment'><%= comment.comment %><br />
+	<em class='posted_by'>Posted <%= time_ago_in_words(comment.created_at)  %> ago by <%= comment.user.username %></em></p> 
+	
+<% end %> 
+
+
+
+

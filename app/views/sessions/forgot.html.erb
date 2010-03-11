@@ -1,0 +1,22 @@
+<% title h("Forgot Username or Password") %>
+
+
+<%= show_content_by_permalink("forgot") -%>
+
+<% form_tag('/sessions/forgot') do %>
+<table border="0">
+	<tr>
+		<td>	
+	<%= label :email, "Email" %><br />
+	<%= text_field_tag (:email, nil, :size => 30, :class => "text") %><br />
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<p><%= submit_tag " send login info " %></p>
+	<p><%= link_to "back to login page", :controller=> "login" %></p>
+	<p><%= link_to "I am a new user and need to register", :controller=> "users", :action => "request_dob" %></p>
+	  </td>
+	</tr>
+</table>
+<% end %>

@@ -1,0 +1,29 @@
+<% title h("Manage Users") %>
+
+<div class='grid_12'>
+	
+<h1><%= h yield(:title) %></h1>
+<p>Here are the current registered users with their supplied information.<br />
+	You can download an Excel file of complete user records <a href='users.xls'>here</a>.</p>
+
+<table class='user_list'>
+	
+	<tr>
+		<th>Name</th>
+		<th>DOB</th>
+	</tr>
+	
+<% for user in @users %>
+
+	<tr>
+		<td><%= link_to (user.first_name + " " + user.last_name), user -%></td>
+		<td><%= user.birthdate -%></td>
+		
+		
+		
+	</tr>
+
+<% end %>
+</table>
+
+</div>
